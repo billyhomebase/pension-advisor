@@ -1,0 +1,48 @@
+.message-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.message-list-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  color: var(--color-gray-500);
+  gap: var(--spacing-sm);
+}
+
+.message-list-empty p {
+  margin: 0;
+}
+
+/* Custom scrollbar */
+.message-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.message-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.message-list::-webkit-scrollbar-thumb {
+  background-color: var(--color-gray-300);
+  border-radius: var(--radius-full);
+}
+
+.message-list::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-gray-400);
+}
+
+@media (max-width: 480px) {
+  .message-list {
+    padding: var(--spacing-sm);
+    gap: var(--spacing-sm);
+  }
+}
