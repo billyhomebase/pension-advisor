@@ -79,13 +79,21 @@ export function useChatActions() {
       const response = await sendChatMessage(apiMessages, state.customerData, state.sessionId);
 
       if (response.success) {
-        const { displayContent, stage, extractedData } = parseAssistantResponse(response.content);
+        const { displayContent, stage, extractedData, tool } = parseAssistantResponse(response.content);
 
-        // Add assistant response to UI
-        actions.addMessage({
+        // Build the message object
+        const messageObj = {
           role: 'assistant',
           content: displayContent
-        });
+        };
+
+        // Add tool if present
+        if (tool) {
+          messageObj.tool = tool;
+        }
+
+        // Add assistant response to UI
+        actions.addMessage(messageObj);
 
         // Add full response to conversation history
         actions.addToConversationHistory({
@@ -130,8 +138,42 @@ export function useChatActions() {
     }
   }, [state.conversationHistory, state.customerData, state.currentStage, state.userName, state.sessionId, actions]);
 
+  // Handle tool completion (e.g., pension calculator results)
+  const handleToolComplete = useCallback((messageId, toolType, result) => {
+    if (toolType === 'pension-calculator') {
+      const { inputs, projection, yearsToRetirement } = result;
+
+      // Format the results as a message
+      const resultMessage = `Based on my calculations:
+
+**Your inputs:**
+- Current age: ${inputs.currentAge}
+- Retirement age: ${inputs.retirementAge}
+- Current pension pot: £${inputs.currentPot.toLocaleString()}
+- Monthly contribution: £${inputs.monthlyContribution.toLocaleString()}
+- Risk level: ${inputs.riskLevel}
+
+**Projected pension pot at retirement:** £${Math.round(projection.futurePot).toLocaleString()}
+- Tax-free cash (25%): £${Math.round(projection.taxFreeCash).toLocaleString()}
+- Remaining for income: £${Math.round(projection.remainingPot).toLocaleString()}
+- In today's money: £${Math.round(projection.todaysValue).toLocaleString()}
+
+That's over ${yearsToRetirement} years of saving. Would you like me to explain what these figures mean for your retirement planning, or shall we explore ways to potentially increase your pension pot?`;
+
+      // Send as a user message summarizing the tool results
+      sendMessage(`I've completed the pension calculator. Here are my details:
+- Current age: ${inputs.currentAge}
+- Planning to retire at: ${inputs.retirementAge}
+- Current pension pot: £${inputs.currentPot.toLocaleString()}
+- Monthly contribution: £${inputs.monthlyContribution.toLocaleString()}
+- Risk preference: ${inputs.riskLevel}
+- Projected pot: £${Math.round(projection.futurePot).toLocaleString()}`);
+    }
+  }, [sendMessage]);
+
   return {
     sendMessage,
+    handleToolComplete,
     isLoading: state.isLoading,
     error: state.error,
     messages: state.messages,

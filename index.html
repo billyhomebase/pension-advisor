@@ -2,12 +2,354 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pension Planning Assistant | M&G</title>
+    <title>Pension Planning Assistant | M&G Adviser</title>
+    <meta name="description" content="AI-powered pension planning assistant for M&G Adviser services">
+
+    <!-- M&G Base Styles -->
+    <link rel="stylesheet" href="/assets/clientlib-base.lc-2000ec679560235f50fb993a09053ba9-lc.min.css" type="text/css">
+    <link rel="stylesheet" href="/assets/clientlib-site.lc-501ee09caa5db46bd9658bcd455205f1-lc.min.css" type="text/css">
+
+    <!-- Favicon -->
+    <link rel="icon" sizes="192x192" href="/assets/favicon/favicon.svg">
+
+    <style>
+      /* Logo styling from original */
+      .cmp-header__logo {
+        background: var(--colors-original-bright-teal, #0ba88a);
+        flex-shrink: 0;
+        width: 70px;
+        height: 70px;
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 1;
+      }
+      .cmp-header__logo a img {
+        width: 64.86%;
+        height: 64.78%;
+        position: absolute;
+        right: 17.57%;
+        left: 17.57%;
+        bottom: 17.29%;
+        top: 17.92%;
+        overflow: visible;
+      }
+      /* Yellow Online Services button */
+      .cmp-header__online-services-dropdown {
+        background-color: #d4ca59;
+        padding: 0 16px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+      }
+      .cmp-header__online-services-dropdown .cmp-header__topbar-label {
+        color: #055a60;
+        font-weight: 500;
+      }
+      /* Vertically align Adviser in top left */
+      .cmp-header__topbar-left {
+        display: flex;
+        align-items: center;
+        height: 100%;
+      }
+      .cmp-header__customer-dropdown {
+        display: flex;
+        align-items: center;
+        height: 100%;
+      }
+      .cmp-header__topbar-left__container {
+        display: flex;
+        align-items: center;
+        height: 100%;
+      }
+      /* Override styles for chat app */
+      .mandg-page-wrapper {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+      /* Green top bar - scrolls away normally */
+      .cmp-header,
+      .cmp-header.cmp-tabs {
+        position: relative !important;
+      }
+      /* White nav bar - now at top level for sticky to work */
+      .cmp-header__main-sticky {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      /* Ensure white nav bar has correct horizontal layout */
+      .cmp-header__main-sticky .cmp-header__main {
+        display: flex;
+        align-items: center;
+      }
+      .cmp-header__main-sticky .cmp-header__content {
+        flex: 1;
+        display: flex;
+        align-items: center;
+      }
+      .cmp-header__main-sticky .cmp-header__navigation {
+        width: 100%;
+      }
+      .cmp-header__main-sticky .cmp-tabs__tablist {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        gap: 0;
+      }
+      .cmp-header__main-sticky .cmp-tabs__tab {
+        padding: 0 16px;
+        height: 84px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      .mandg-main-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      #root {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div class="mandg-page-wrapper">
+      <!-- M&G Header - Green Top Bar (scrolls away) -->
+      <div class="header tabs panelcontainer ignore-toc">
+        <div class="cmp-header cmp-tabs" style="top: 0px;">
+          <div class="header-scroll-position">
+            <div class="mobile-above">
+              <!-- Top Bar -->
+              <div class="cmp-header__topbar">
+                <div class="mobile-header cmp-header__logo">
+                  <a href="/" aria-label="M and G logo">
+                    <img src="/assets/logo2.svg" alt="M and G logo">
+                  </a>
+                </div>
+                <div class="cmp-header__topbar-left">
+                  <div class="cmp-header__customer-dropdown">
+                    <div class="cmp-header__topbar-left__container">
+                      <span class="cmp-header__topbar-label">Adviser</span>
+                    </div>
+                    <div class="cmp-header__topbar-left-help">
+                      <span class="icon-information help-icon" aria-hidden="true"></span>
+                      <span>For UK financial advice professionals only</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="cmp-header__topbar-right">
+                  <ul class="cmp-header__topbar-links">
+                    <li class="cmp-header__topbar-link">
+                      <div class="cmp-header__online-services-dropdown">
+                        <span class="cmp-header__topbar-label">Online Services</span>
+                      </div>
+                    </li>
+                    <li class="cmp-header__topbar-link">
+                      <a href="#" target="_blank">
+                        Document centre
+                      </a>
+                    </li>
+                    <li class="cmp-header__topbar-link">
+                      <a href="#" target="_blank">
+                        Cookies
+                      </a>
+                    </li>
+                    <li class="cmp-header__topbar-link">
+                      <a href="#" target="_blank">
+                        About M&G
+                      </a>
+                    </li>
+                    <div class="cmp-header__search-menu">
+                      <button class="cmp-header__topbar-search-button header-search-btn" type="button">
+                        <span class="cmp-header__topbar-search-icon">
+                          <span class="cmp-header__topbar-search-icon-text">Search</span>
+                        </span>
+                      </button>
+                    </div>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- M&G White Navigation Bar (sticky - moved outside nested containers) -->
+      <div class="cmp-header__main-sticky">
+        <div class="cmp-header__main small-hidden">
+          <div class="cmp-header__logo desktop-header">
+            <a href="/" aria-label="M and G logo">
+              <img src="/assets/logo2.svg" alt="M and G logo">
+            </a>
+          </div>
+          <div class="cmp-header__content" style="height: 84px;">
+            <nav class="cmp-header__navigation">
+              <ol role="tablist" class="cmp-tabs__tablist" aria-multiselectable="false">
+                <li role="tab" class="cmp-tabs__tab" tabindex="0">Why M&G</li>
+                <li role="tab" class="cmp-tabs__tab" tabindex="0">Products</li>
+                <li role="tab" class="cmp-tabs__tab" tabindex="0">Tech matters</li>
+                <li role="tab" class="cmp-tabs__tab" tabindex="0">Investments solutions</li>
+                <li role="tab" class="cmp-tabs__tab" tabindex="0">Tools and calculators</li>
+                <li role="tab" class="cmp-tabs__tab" tabindex="0">Adviser services</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+
+      <!-- Page Contents -->
+      <main class="mandg-main-content">
+        <div class="container responsivegrid aem-GridColumn aem-GridColumn--default--12">
+          <div class="cmp-container">
+            <!-- React App mounts here -->
+            <div id="root"></div>
+          </div>
+        </div>
+      </main>
+
+      <!-- M&G Footer -->
+      <div class="experiencefragment cmp-experiencefragment cmp-experiencefragment--footer">
+        <div class="cmp-container">
+          <div class="container responsivegrid footer">
+            <div class="cmp-container">
+              <div class="aem-Grid aem-Grid--12 aem-Grid--default--12">
+                <!-- Footer Top with Logo and Links -->
+                <div class="container responsivegrid dark bg-theme-1 full-bleed footer-top aem-GridColumn aem-GridColumn--default--12">
+                  <div class="cmp-container">
+                    <div class="aem-Grid aem-Grid--12 aem-Grid--default--12">
+                      <!-- Footer Logo -->
+                      <div class="image footer-logo aem-GridColumn aem-GridColumn--default--12">
+                        <div class="cmp-image-container">
+                          <div class="cmp-image-wrapper">
+                            <div class="cmp-image">
+                              <a class="cmp-image__link" href="/">
+                                <img src="/assets/logo.svg" class="cmp-image__image" alt="M&G logo">
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Footer Links Container -->
+                      <div class="container responsivegrid dark bg-theme-1 footer-link-container aem-GridColumn aem-GridColumn--default--12">
+                        <div class="cmp-container">
+                          <div class="aem-Grid aem-Grid--12 aem-Grid--default--12">
+                            <!-- About M&G Column -->
+                            <div class="text footer-links aem-GridColumn aem-GridColumn--default--12">
+                              <div class="cmp-text">
+                                <p><span class="list-heading">About M&G</span></p>
+                                <ul>
+                                  <li><a href="https://www.mandg.com/adviser/about/who-we-are" target="_blank">Who we are</a></li>
+                                  <li><a href="https://www.mandg.com/adviser" target="_blank">Sustainability & ESG</a></li>
+                                  <li><a href="https://www.mandg.com/adviser" target="_blank">News & Insights</a></li>
+                                </ul>
+                              </div>
+                            </div>
+
+                            <!-- Useful Links Column -->
+                            <div class="text footer-links aem-GridColumn aem-GridColumn--default--12">
+                              <div class="cmp-text">
+                                <p><span class="list-heading">Useful Links</span></p>
+                                <ul>
+                                  <li><a href="https://www.mandg.com/adviser/contact-us" target="_blank">Contact us</a></li>
+                                  <li><a href="https://www.mandg.com/adviser/online-services" target="_blank">Login to Online Services</a></li>
+                                  <li><a href="https://www.mandg.com/adviser/funds/prufund" target="_blank">PruFund Range</a></li>
+                                </ul>
+                              </div>
+                            </div>
+
+                            <!-- Adviser Services Column -->
+                            <div class="text footer-links aem-GridColumn aem-GridColumn--default--12">
+                              <div class="cmp-text">
+                                <p><span class="list-heading">Adviser services</span></p>
+                                <ul>
+                                  <li><a href="https://www.mandg.com/adviser" target="_blank">Document Library</a></li>
+                                  <li><a href="https://www.mandg.com/adviser/services/third-party-reports" target="_blank">Due Diligence Hub</a></li>
+                                  <li><a href="https://www.mandg.com/adviser/services/estate-planning" target="_blank">Estate Planning</a></li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Social and Horizontal Links -->
+                      <div class="container responsivegrid dark bg-theme-1 aem-GridColumn aem-GridColumn--default--12">
+                        <div class="cmp-container">
+                          <div class="aem-Grid aem-Grid--12 aem-Grid--default--12">
+                            <!-- Social -->
+                            <div class="socialmedia aem-GridColumn aem-GridColumn--default--12">
+                              <div class="cmp-socialmedia">
+                                <div class="cmp-socialmedia__heading">Social</div>
+                                <ul>
+                                  <li class="cmp-socialmedia__icons">
+                                    <a href="https://uk.linkedin.com/company/mandgplc" target="_blank" rel="noopener noreferrer">
+                                      <span class="icon-linkedin"></span>
+                                    </a>
+                                  </li>
+                                  <li class="cmp-socialmedia__icons">
+                                    <a href="https://www.youtube.com/@mandgplc" target="_blank" rel="noopener noreferrer">
+                                      <span class="icon-youtube"></span>
+                                    </a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+
+                            <!-- Horizontal Footer Links -->
+                            <div class="container responsivegrid dark bg-theme-1 footer-link-container-horiz aem-GridColumn aem-GridColumn--default--12">
+                              <div class="cmp-container">
+                                <div class="aem-Grid aem-Grid--12 aem-Grid--default--12">
+                                  <div class="text footer-links-horizontal aem-GridColumn aem-GridColumn--default--12">
+                                    <div class="cmp-text">
+                                      <ul>
+                                        <li><a href="https://www.mandg.com/adviser/footer/terms-and-conditions" target="_blank">Terms & Conditions</a></li>
+                                        <li><a href="https://www.mandg.com/adviser/footer/privacy" target="_blank">Privacy Policy</a></li>
+                                        <li><a href="https://www.mandg.com/adviser/footer/cookies" target="_blank">Cookie Policy</a></li>
+                                        <li><a href="https://www.mandg.com/adviser/footer" target="_blank">Data Protection</a></li>
+                                        <li><a href="https://www.mandg.com/adviser/footer/accessibility" target="_blank">Accessibility</a></li>
+                                        <li><a href="https://www.mandg.com/" target="_blank">Modern Slavery Act</a></li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Footer Bottom Disclaimer -->
+                <div class="container responsivegrid light bg-theme-3 full-bleed footer-bottom aem-GridColumn aem-GridColumn--default--12">
+                  <div class="cmp-container">
+                    <div class="aem-Grid aem-Grid--12 aem-Grid--default--12">
+                      <div class="text aem-GridColumn aem-GridColumn--default--12">
+                        <div class="cmp-text">
+                          <p>"Prudential" is a trading name of Prudential Distribution Limited. Prudential Distribution Limited is registered in Scotland. Registered Office at 5 Central Way, Kildean Business Park, Stirling, FK8 1FT. Registered number SC212640. Authorised and regulated by the Financial Conduct Authority. Prudential Distribution Limited is part of the same corporate group as the Prudential Assurance Company Limited. The Prudential Assurance Company Limited and Prudential Distribution Limited are direct/indirect subsidiaries of M&G plc which is a holding company registered in England and Wales with registered number 11444019 and registered office at 10 Fenchurch Avenue, London EC3M 5AG, some of whose subsidiaries are authorised and regulated, as applicable, by the Prudential Regulation Authority and the Financial Conduct Authority. These companies are not affiliated in any manner with Prudential Financial, Inc, a company whose principal place of business is in the United States of America or Prudential plc, an international group incorporated in the United Kingdom.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

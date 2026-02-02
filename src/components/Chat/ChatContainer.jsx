@@ -4,7 +4,7 @@ import ChatInput from './ChatInput';
 import './ChatContainer.css';
 
 function ChatContainer() {
-  const { messages, isLoading, error, sendMessage } = useChatActions();
+  const { messages, isLoading, error, sendMessage, handleToolComplete } = useChatActions();
 
   return (
     <div className="chat-container">
@@ -13,7 +13,11 @@ function ChatContainer() {
           {error}
         </div>
       )}
-      <MessageList messages={messages} isLoading={isLoading} />
+      <MessageList
+        messages={messages}
+        isLoading={isLoading}
+        onToolComplete={handleToolComplete}
+      />
       <ChatInput
         onSend={sendMessage}
         disabled={isLoading}

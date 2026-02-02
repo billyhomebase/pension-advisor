@@ -3,14 +3,16 @@ import Message from './Message';
 import TypingIndicator from './TypingIndicator';
 import './MessageList.css';
 
-function MessageList({ messages, isLoading }) {
+function MessageList({ messages, isLoading, onToolComplete }) {
   const listRef = useRef(null);
-  const bottomRef = useRef(null);
 
-  // Auto-scroll to bottom when new messages arrive
+  // Auto-scroll to bottom when new messages arrive (within container only)
   useEffect(() => {
-    if (bottomRef.current) {
-      bottomRef.current.scrollIntoView({ behavior: 'smooth' });
+    if (listRef.current) {
+      listRef.current.scrollTo({
+        top: listRef.current.scrollHeight,
+        behavior: 'smooth'
+      });
     }
   }, [messages, isLoading]);
 
@@ -24,12 +26,14 @@ function MessageList({ messages, isLoading }) {
       )}
 
       {messages.map((message) => (
-        <Message key={message.id} message={message} />
+        <Message
+          key={message.id}
+          message={message}
+          onToolComplete={onToolComplete}
+        />
       ))}
 
       {isLoading && <TypingIndicator />}
-
-      <div ref={bottomRef} aria-hidden="true" />
     </div>
   );
 }

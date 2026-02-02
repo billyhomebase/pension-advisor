@@ -78,17 +78,57 @@ a:hover {
 
 /* Main app layout */
 .app {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  height: 100dvh; /* Dynamic viewport height for mobile */
-  overflow: hidden;
+  flex: 1;
+  display: block;
+  min-height: 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  padding: var(--spacing-md);
 }
 
-.app-main {
-  flex: 1;
+/* App header bar with title and reset button - sticky below M&G nav */
+.app-header-bar {
   display: flex;
-  flex-direction: column;
-  min-height: 0; /* Allow flex item to shrink below content size */
-  overflow: hidden;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md) 0;
+  margin-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--color-gray-200);
+  background-color: var(--color-white);
+  position: sticky;
+  top: 84px; /* Height of M&G white nav bar when it's sticky */
+  z-index: 50;
+  margin-left: calc(-1 * var(--spacing-md));
+  margin-right: calc(-1 * var(--spacing-md));
+  padding-left: var(--spacing-md);
+  padding-right: var(--spacing-md);
+}
+
+.app-title {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--color-primary);
+  margin: 0;
+}
+
+.app-reset-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  color: var(--color-gray-600);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  transition: all var(--transition-fast);
+}
+
+.app-reset-btn:hover {
+  color: var(--color-primary);
+  background-color: var(--color-gray-100);
+}
+
+.app-reset-btn svg {
+  width: 18px;
+  height: 18px;
 }

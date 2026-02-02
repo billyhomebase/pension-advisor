@@ -31,3 +31,7 @@ server/logs
 *.njsproj
 *.sln
 *.sw?
+
+#Other
+
+nul

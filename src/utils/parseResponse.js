@@ -3,7 +3,7 @@
  *
  * Expected metadata format:
  * ```metadata
- * {"stage": 1, "extractedData": {"name": "John"}}
+ * {"stage": 1, "extractedData": {"name": "John"}, "tool": {"type": "pension-calculator"}}
  * ```
  */
 export function parseAssistantResponse(response) {
@@ -20,7 +20,8 @@ export function parseAssistantResponse(response) {
       return {
         displayContent,
         stage: metadata.stage || null,
-        extractedData: metadata.extractedData || {}
+        extractedData: metadata.extractedData || {},
+        tool: metadata.tool || null
       };
     } catch (parseError) {
       console.warn('Failed to parse metadata JSON:', parseError);
@@ -31,7 +32,8 @@ export function parseAssistantResponse(response) {
   return {
     displayContent: response.trim(),
     stage: null,
-    extractedData: {}
+    extractedData: {},
+    tool: null
   };
 }
 
