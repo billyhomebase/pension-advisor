@@ -21,6 +21,11 @@ server/.env
 # Chat logs
 server/logs
 
+#Tests
+tests/*
+test-results/*
+playwright.config.js
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

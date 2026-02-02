@@ -243,6 +243,7 @@
 .result-card--muted {
   grid-column: span 2;
   background: var(--color-gray-100);
+  color:var(--color-gray-600);
 }
 
 .result-label {
@@ -253,7 +254,7 @@
 .result-value {
   font-size: var(--font-size-lg);
   font-weight: 700;
-  color: var(--color-gray-800);
+  
 }
 
 .result-note {
@@ -371,6 +372,7 @@
   .result-card--primary,
   .result-card--muted {
     grid-column: span 1;
+    
   }
 
   .risk-buttons {

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ChatProvider, useChat } from './context/ChatContext';
 import StepIndicator from './components/StepIndicator/StepIndicator';
 import { ChatContainer } from './components/Chat';
@@ -9,6 +9,13 @@ import './App.css';
 function AppContent() {
   const { state, actions } = useChat();
   const [activeTab, setActiveTab] = useState('chat');
+
+  // Automatically show adviser form when it becomes available
+  useEffect(() => {
+    if (state.showAdvisorForm) {
+      setActiveTab('advisor');
+    }
+  }, [state.showAdvisorForm]);
 
   return (
     <div className="app">
@@ -43,7 +50,7 @@ function AppContent() {
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                 <circle cx="12" cy="7" r="4" />
               </svg>
-              Speak with Advisor
+              Speak with Adviser
             </button>
           </div>
         )}

@@ -73,7 +73,7 @@ function AdvisorForm({ userName, customerData, onClose }) {
           </div>
           <h3>Thank you, {formData.name}!</h3>
           <p>Your request has been submitted successfully.</p>
-          <p>One of our qualified advisors will contact you within 2 business days at your preferred time.</p>
+          <p>One of our qualified advisers will contact you within 2 business days at your preferred time.</p>
           <p className="success-note">
             <strong>Reference:</strong> #{Date.now().toString(36).toUpperCase()}
           </p>
@@ -85,8 +85,8 @@ function AdvisorForm({ userName, customerData, onClose }) {
   return (
     <div className="advisor-form">
       <div className="advisor-form-header">
-        <h3>Speak with an Advisor</h3>
-        <p>Complete the form below and one of our qualified advisors will be in touch.</p>
+        <h3>Speak with an Adviser</h3>
+        <p>Complete the form below and one of our qualified advisers will be in touch.</p>
         {onClose && (
           <button className="advisor-form-close" onClick={onClose} aria-label="Close form">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

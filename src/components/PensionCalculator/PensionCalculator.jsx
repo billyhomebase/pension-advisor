@@ -254,12 +254,12 @@ function PensionCalculator({ onComplete, initialValues = {} }) {
                 <span className="result-note">Based on {values.riskLevel} growth ({(ASSUMPTIONS.growthRates[values.riskLevel] * 100).toFixed(0)}%)</span>
               </div>
 
-              <div className="result-card">
+              <div className="result-card result-card--muted">
                 <span className="result-label">Tax-free cash (25%)</span>
                 <span className="result-value">{formatCurrency(selectedProjection.taxFreeCash)}</span>
               </div>
 
-              <div className="result-card">
+              <div className="result-card result-card--muted">
                 <span className="result-label">Remaining for income</span>
                 <span className="result-value">{formatCurrency(selectedProjection.remainingPot)}</span>
               </div>

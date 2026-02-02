@@ -28,8 +28,78 @@
   padding: var(--spacing-sm) var(--spacing-md);
   border-radius: var(--radius-lg);
   line-height: var(--line-height-relaxed);
-  white-space: pre-wrap;
   word-wrap: break-word;
+}
+
+/* User messages keep pre-wrap for plain text */
+.message--user .message-content {
+  white-space: pre-wrap;
+}
+
+/* Markdown styling for assistant messages */
+.message--assistant .message-content p {
+  margin: 0 0 0.5em 0;
+}
+
+.message--assistant .message-content p:last-child {
+  margin-bottom: 0;
+}
+
+.message--assistant .message-content strong {
+  font-weight: 600;
+}
+
+.message--assistant .message-content em {
+  font-style: italic;
+}
+
+.message--assistant .message-content ul {
+  margin: 0.5em 0;
+  padding-left: 1.5em;
+  list-style-type: disc;
+}
+
+.message--assistant .message-content ol {
+  margin: 0.5em 0;
+  padding-left: 1.5em;
+  list-style-type: decimal;
+}
+
+.message--assistant .message-content li {
+  margin: 0.25em 0;
+}
+
+.message--assistant .message-content code {
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+  font-family: monospace;
+  font-size: 0.9em;
+}
+
+/* Calculator link button */
+.calculator-link {
+  display: inline;
+  color: var(--color-primary);
+  font-weight: 500;
+  text-decoration: underline;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+.calculator-link:hover {
+  color: var(--color-primary-dark);
+  text-decoration: none;
+}
+
+.calculator-link:disabled {
+  color: var(--color-gray-400);
+  cursor: default;
+  text-decoration: none;
 }
 
 .message--user .message-content {

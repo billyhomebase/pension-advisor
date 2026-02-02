@@ -5,17 +5,23 @@ import { parseAssistantResponse, shouldShowAdvisorForm } from '../utils/parseRes
 
 export function useChatActions() {
   const { state, actions } = useChatContext();
-  const initializedRef = useRef(false);
+  const fetchedSessionRef = useRef(null);
 
-  // Fetch initial greeting on mount (only if no messages exist)
+  // Fetch greeting when session starts or resets
   useEffect(() => {
-    if (initializedRef.current) return;
+    // Skip if we already have messages (restored from session storage)
     if (state.messages.length > 0) {
-      initializedRef.current = true;
+      fetchedSessionRef.current = state.sessionId;
       return;
     }
 
-    initializedRef.current = true;
+    // Skip if we've already fetched or are fetching for this session
+    if (fetchedSessionRef.current === state.sessionId) {
+      return;
+    }
+
+    // Mark this session as being fetched BEFORE the async call
+    fetchedSessionRef.current = state.sessionId;
 
     const fetchGreeting = async () => {
       actions.setLoading(true);
@@ -53,7 +59,7 @@ export function useChatActions() {
     };
 
     fetchGreeting();
-  }, []);
+  }, [state.sessionId, state.messages.length]);
 
   const sendMessage = useCallback(async (content) => {
     // Add user message to UI

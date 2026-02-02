@@ -38,7 +38,7 @@ export function parseAssistantResponse(response) {
 }
 
 /**
- * Determine if we should show the advisor form based on response
+ * Determine if we should show the adviser form based on response
  */
 export function shouldShowAdvisorForm(response, currentStage) {
   if (currentStage !== 5) return false;
@@ -47,7 +47,9 @@ export function shouldShowAdvisorForm(response, currentStage) {
   const ctaIndicators = [
     'speak with one of our',
     'arrange a call',
+    'qualified adviser',
     'qualified advisor',
+    'use the form below',
     'next step'
   ];
 
