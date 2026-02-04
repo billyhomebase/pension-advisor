@@ -39,20 +39,9 @@ export function parseAssistantResponse(response) {
 
 /**
  * Determine if we should show the adviser form based on response
+ * Note: The adviser form is now shown inline in the conversation when the user clicks the link
  */
 export function shouldShowAdvisorForm(response, currentStage) {
-  if (currentStage !== 5) return false;
-
-  // Look for phrases that indicate the conversation is concluding
-  const ctaIndicators = [
-    'speak with one of our',
-    'arrange a call',
-    'qualified adviser',
-    'qualified advisor',
-    'use the form below',
-    'next step'
-  ];
-
-  const lowerResponse = response.toLowerCase();
-  return ctaIndicators.some(indicator => lowerResponse.includes(indicator));
+  // Adviser form is now triggered by clicking the inline link, not automatically
+  return false;
 }

@@ -10,7 +10,8 @@ import { useState, useEffect } from 'react';
  */
 export function useTypewriter(text, { speed = 50, enabled = true } = {}) {
   const [displayedText, setDisplayedText] = useState(enabled ? '' : text);
-  const [isTyping, setIsTyping] = useState(false);
+  // Initialize isTyping to true if we're going to animate (prevents false completion detection)
+  const [isTyping, setIsTyping] = useState(enabled && !!text);
 
   useEffect(() => {
     if (!text) {

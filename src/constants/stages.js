@@ -16,13 +16,8 @@ export const STAGES = [
   },
   {
     id: 4,
-    name: 'Your Options',
-    description: 'Options & preferences'
-  },
-  {
-    id: 5,
-    name: 'Summary',
-    description: 'Review & next steps'
+    name: 'Recommendations',
+    description: 'Advice & next steps'
   }
 ];
 

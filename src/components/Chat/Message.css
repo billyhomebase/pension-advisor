@@ -132,11 +132,12 @@
 /* Tool container */
 .message-tool {
   margin-top: var(--spacing-sm);
-  max-width: 100%;
+  width: 100%;
 }
 
-.message--assistant .message-tool {
-  max-width: 450px;
+/* Messages with tools should be full width */
+.message:has(.message-tool) {
+  max-width: 100%;
 }
 
 @media (max-width: 480px) {
