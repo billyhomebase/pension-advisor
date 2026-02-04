@@ -73,11 +73,14 @@ function Message({ message, onToolComplete, animate = false }) {
   };
 
   const renderCalculator = () => {
-    if (!hasTool || message.tool.type !== 'pension-calculator') return null;
+    // Get initial values from tool metadata if available, otherwise use empty object
+    const initialValues = (hasTool && message.tool.type === 'pension-calculator')
+      ? message.tool.initialValues
+      : {};
 
     return (
       <PensionCalculator
-        initialValues={message.tool.initialValues}
+        initialValues={initialValues}
         onComplete={handleToolComplete}
       />
     );
@@ -97,7 +100,7 @@ function Message({ message, onToolComplete, animate = false }) {
           )}
         </div>
       )}
-      {showCalculator && hasTool && (
+      {showCalculator && (
         <div className="message-tool">
           {renderCalculator()}
         </div>

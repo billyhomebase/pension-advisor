@@ -5,6 +5,7 @@
   width: 100%;
   min-height: 0; /* Allow flex item to shrink below content size */
   overflow: hidden;
+  margin-bottom: 80px;
 }
 
 /* Tab navigation */

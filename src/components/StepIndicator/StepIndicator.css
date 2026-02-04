@@ -3,7 +3,7 @@
   background-color: var(--color-white);
   border-bottom: 1px solid var(--color-gray-200);
   position: sticky;
-  top: 144px; /* 84px (M&G nav) + ~60px (app-header-bar) */
+  top: 57px; /* Height of app-header-bar */
   z-index: 49;
   margin-left: calc(-1 * var(--spacing-md));
   margin-right: calc(-1 * var(--spacing-md));
